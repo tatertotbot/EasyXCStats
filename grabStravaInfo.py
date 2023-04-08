@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 def getRecentRun(userID):
     global name
     global date
+    global hours
     global minutes
     global seconds
     global distance
@@ -27,9 +28,12 @@ def getRecentRun(userID):
         time_object = datetime.strptime(time, '%M:%S')
     else:
         time_object = datetime.strptime(time, '%S')
-
+    
     minutes = time_object.strftime('%M')
     seconds = time_object.strftime('%S')
+    #converts to ints to add hours and then converts back
+    minutes = int(minutes) + (int(time_object.strftime('%H')) * 60)
+    minutes = str(minutes)
 
     #converts date given by Strava to version readable by XCStats
     if date == 'Today':
