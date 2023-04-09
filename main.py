@@ -1,7 +1,24 @@
 import requests
+import pickle
+import time
 import grabXCStatsCookies as cookie
 import grabStravaInfo as info
-import userInfo as user
+import userInfo
+
+def newRun():
+    info.getRecentRun(userInfo.userID)
+    latest = [info.name, info.date, info.minutes, info.seconds, info.distance]
+    with open('credentials.pickle', 'rb') as f:
+        lastLogged = pickle.load(f)
+        print(lastLogged)
+        if (latest == lastLogged):
+            print("no new runs")
+            return False
+        else:
+            print("updating latest run: " + str(latest))
+            with open('credentials.pickle', 'wb') as b:
+                pickle.dump(latest, b)
+            return True
 
 def addWorkout(name, date, minutes, seconds, distance, school_id, user_id):
     s = requests.Session()
@@ -34,7 +51,14 @@ def addWorkout(name, date, minutes, seconds, distance, school_id, user_id):
     f.write(res.content)
     f.close()
 
-user.getCredentials()
-info.getRecentRun(user.userID)
-cookie.grabCookies(user.email, user.password)
-session = addWorkout(info.name, info.date, info.minutes, info.seconds, info.distance, cookie.school, cookie.id)
+userInfo.getCredentials()
+info.getRecentRun(userInfo.userID)
+print("EeasyXCStats running!\nPress ctrl + c in this terminal at any time to exit\nNow scanning for new runs every minute")
+try:
+    while True:
+        if (newRun() == True):
+            cookie.grabCookies(userInfo.email, userInfo.password)
+            session = addWorkout(info.name, info.date, info.minutes, info.seconds, info.distance, cookie.school, cookie.id)
+        time.sleep(60)
+except KeyboardInterrupt:
+    pass
