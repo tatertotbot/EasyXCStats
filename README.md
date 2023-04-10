@@ -5,7 +5,7 @@ EasyXCStats is an application that adds a public users most recent Strava run to
 
 ## Installation
 
-Click main.exe and then download. You can also download credentials.txt as a template for inputting your credentials. The python files are not necessary but are there for open source purposes.
+Click main.exe and then download. You can also download credentials.txt as a template for inputting your credentials, but credentials.pickle is **necessary**. The python files are not necessary but are there for open source purposes.
 
 
 ## Usage
