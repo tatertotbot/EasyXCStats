@@ -7,7 +7,7 @@ import userInfo
 
 def newRun():
     info.getRecentRun(userInfo.userID)
-    latest = [info.name, info.date, info.minutes, info.seconds, info.distance]
+    latest = [info.date, info.minutes, info.seconds, info.distance]
     with open('credentials.pickle', 'rb') as f:
         lastLogged = pickle.load(f)
         print(lastLogged)
