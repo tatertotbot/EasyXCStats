@@ -10,7 +10,7 @@ Click main.exe and then download. You can also download credentials.txt as a tem
 
 ## Usage
 
-Put main.exe and credentials.txt in the same folder.
+Put main.exe, credentials.txt, and credentials.pickle in the same folder.
 
 Inside credentials.txt you should format the information like this.
 ```
@@ -32,6 +32,8 @@ If you don't know what your Strava user id is you can follow these steps
 So if the url is https://www.strava.com/athletes/12345678, then your user id is 12345678.
 
 **Note that if your Strava account if private, this program will not work.** If anyone wants me to make EasyXCStats compatible with private accounts then dm me (read Contributing below).
+
+Once you have a folder with **main.exe**, **credentials.txt**, and **credentials.pickle**, and your information in credentials.txt, run main.exe. The program will begin checking for new runs and adding them to XCStats. You can keep main.exe running in the background on your computer, or you can run it once after you finish a run.
 
 ## Contributing
 
